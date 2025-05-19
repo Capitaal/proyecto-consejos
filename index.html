@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta charset="UTF-8">
+  <title>Consejo Filosófico del Día</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+      transition: background-color 0.5s ease;
+      color: #222;
+    }
+
+    #consejo {
+      font-size: 24px;
+      margin: 20px 0;
+    }
+
+    #imagen {
+      width: 400px;
+      height: auto;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      background: #333;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Consejo Filosófico del Día</h1>
+  <div id="consejo">Cargando consejo...</div>
+  <img id="imagen" src="" alt="Imagen inspiradora">
+  <br>
+  <button onclick="cargarConsejo()">Dame otro consejo</button>
+
+  <script>
+    async function cargarConsejo() {
+      const res = await fetch('http://127.0.0.1:8000/consejo');
+      const data = await res.json();
+      document.getElementById('consejo').innerText = data.consejo;
+      document.getElementById('imagen').src = data.imagen;
+      document.body.style.backgroundColor = data.color;
+    }
+
+    cargarConsejo();
+  </script>
+</body>
+</html>
