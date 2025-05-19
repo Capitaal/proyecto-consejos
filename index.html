@@ -48,14 +48,16 @@
   <button onclick="cargarConsejo()">Dame otro consejo</button>
 
   <script>
+    const backendURL = window.location.origin;
+  
     async function cargarConsejo() {
-      const res = await fetch('http://127.0.0.1:8000/consejo');
+      const res = await fetch(`${backendURL}/consejo`);
       const data = await res.json();
       document.getElementById('consejo').innerText = data.consejo;
       document.getElementById('imagen').src = data.imagen;
       document.body.style.backgroundColor = data.color;
     }
-
+  
     cargarConsejo();
   </script>
 </body>

@@ -220,3 +220,8 @@ def favicon():
 @app.get("/")
 def serve_frontend():
     return FileResponse("index.html")
+
+import uvicorn
+
+if __name__ == "__main__":
+    uvicorn.run("api_consejos:app", host="0.0.0.0", port=8000)
